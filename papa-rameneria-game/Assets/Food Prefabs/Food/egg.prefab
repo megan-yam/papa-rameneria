@@ -77,6 +77,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 92611ade608beb342acc07ff63d38785, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3710632654595708154}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 92611ade608beb342acc07ff63d38785, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8543969862283757152}
   m_SourcePrefab: {fileID: 100100000, guid: 92611ade608beb342acc07ff63d38785, type: 3}
 --- !u!1 &184439898108723844 stripped
 GameObject:
@@ -145,3 +148,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DragObjects
   dropZoneTag: eggDropZone
   snapDistance: 0.25
+--- !u!114 &8543969862283757152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184439898108723844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c13af15c17445caa41586d230bc8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ingredient
+  ingredientType: 9

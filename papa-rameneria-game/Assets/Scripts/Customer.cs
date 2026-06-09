@@ -8,11 +8,11 @@ public class Customer : MonoBehaviour
     public float speed = 2f;
     private Vector3 target;
     private bool isMoving = false;
-    // private bool hasArrived;
     HashSet<Material> order;
-    // protein: pork, fishcakes, tofu, egg
-    // noodle types: thick and thin
-    // veggies: green onions, bok choy, mushrooms, bean sprouts
+    // Noodles: thick, thin, normal
+    // Soup: Tonkatsu, Miso, Shoyu
+    // Protein: eggs, pork, tofu
+    // Veggies: green onion, fishcake
     HashSet<Material> actualIngredients;
 
 
@@ -20,13 +20,6 @@ public class Customer : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
-
-    void Start()
-{
-    Debug.Log(gameObject.name + " | controller: " +
-        animator.runtimeAnimatorController);
-        Debug.Log(gameObject.name + " animator object = " + animator.gameObject.name);
-}
 
     void Update()
     {
@@ -44,7 +37,6 @@ public class Customer : MonoBehaviour
 
     void Move()
     {
-        // if (hasArrived) return;
         transform.position = Vector3.MoveTowards(
             transform.position,
             target,
@@ -55,8 +47,6 @@ public class Customer : MonoBehaviour
         {
             transform.position = target;
             isMoving = false;
-            // hasArrived = true;
-            // animator.SetBool("isWalking", isMoving);
         }
     }
 
@@ -106,7 +96,5 @@ public class Customer : MonoBehaviour
     {
         target = newTarget;
         isMoving = true;
-        // hasArrived = false;
-        // animator.SetBool("isWalking", isMoving);
     }
 }

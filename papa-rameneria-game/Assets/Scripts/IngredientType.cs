@@ -2,6 +2,10 @@ public enum IngredientType
 {
     ThickNoodles,
     ThinNoodles,
+    NormalNoodles,
+    Tonkatsu,
+    Miso,
+    Shoyu,
 
     Pork,
     FishCake,
@@ -9,7 +13,4 @@ public enum IngredientType
     Egg,
 
     GreenOnion,
-    BokChoy,
-    Mushroom,
-    BeanSprout
 }

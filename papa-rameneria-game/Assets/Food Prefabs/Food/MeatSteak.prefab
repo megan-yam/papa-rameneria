@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7188078148466614871}
   - component: {fileID: 5400810588795431995}
   - component: {fileID: 5624301637858922502}
+  - component: {fileID: -8933858225135367243}
   m_Layer: 0
   m_Name: MeatSteak
   m_TagString: Untagged
@@ -155,3 +156,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DragObjects
   dropZoneTag: meatDropZone
   snapDistance: 0.25
+--- !u!114 &-8933858225135367243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913048377020112672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c13af15c17445caa41586d230bc8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ingredient
+  ingredientType: 6

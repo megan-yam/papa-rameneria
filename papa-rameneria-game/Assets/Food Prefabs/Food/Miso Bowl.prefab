@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2617311345363739731, guid: 9fbe97d4136af4b94bc1739eb9f081bf, type: 3}
       propertyPath: m_Name
-      value: MisoBowl Variant
+      value: Miso Bowl
       objectReference: {fileID: 0}
     - target: {fileID: 3780224150034913009, guid: 9fbe97d4136af4b94bc1739eb9f081bf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -59,5 +59,26 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2617311345363739731, guid: 9fbe97d4136af4b94bc1739eb9f081bf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3179702237305675042}
   m_SourcePrefab: {fileID: 100100000, guid: 9fbe97d4136af4b94bc1739eb9f081bf, type: 3}
+--- !u!1 &2976330697101917938 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2617311345363739731, guid: 9fbe97d4136af4b94bc1739eb9f081bf, type: 3}
+  m_PrefabInstance: {fileID: 944773176353151649}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-3179702237305675042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2976330697101917938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c13af15c17445caa41586d230bc8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ingredient
+  ingredientType: 4
