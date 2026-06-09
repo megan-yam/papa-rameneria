@@ -117,6 +117,14 @@ public class DragObjects : MonoBehaviour
 
             transform.rotation = originalRotation;
             transform.SetParent(closestZone, true);
+            Bowl bowl = closestZone.GetComponentInParent<Bowl>();
+
+            Ingredient ingredient = GetComponent<Ingredient>();
+
+            if (bowl != null && ingredient != null)
+            {
+                bowl.AddIngredient(ingredient.ingredientType);
+            }
 
             if (rb != null)
             {

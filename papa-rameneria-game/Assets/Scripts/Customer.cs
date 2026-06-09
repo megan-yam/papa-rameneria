@@ -8,12 +8,12 @@ public class Customer : MonoBehaviour
     public float speed = 2f;
     private Vector3 target;
     private bool isMoving = false;
-    HashSet<Material> order;
+    HashSet<IngredientType> order;
     // Noodles: thick, thin, normal
     // Soup: Tonkatsu, Miso, Shoyu
     // Protein: eggs, pork, tofu
     // Veggies: green onion, fishcake
-    HashSet<Material> actualIngredients;
+    HashSet<IngredientType> actualIngredients;
 
 
     void Awake()
@@ -53,7 +53,7 @@ public class Customer : MonoBehaviour
     public float CalculateAccuracy()
     {
         float correct = 0;
-        foreach (Material ingredient in actualIngredients)
+        foreach (IngredientType ingredient in actualIngredients)
         {
             if (order.Contains(ingredient))
             {
