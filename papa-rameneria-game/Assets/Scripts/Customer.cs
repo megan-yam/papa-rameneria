@@ -11,7 +11,7 @@ public class Customer : MonoBehaviour
     private bool isMoving = false;
     HashSet<IngredientType> order;
     // Noodles: thick, thin, normal
-    // Soup: Tonkatsu, Miso, Shoyu
+    // Soup: Tonkotsu, Miso, Shoyu
     // Protein: eggs, pork, tofu
     // Veggies: green onion, fishcake
     HashSet<IngredientType> actualIngredients;
@@ -97,5 +97,17 @@ public class Customer : MonoBehaviour
     {
         target = newTarget;
         isMoving = true;
+    }
+
+    public string GetOrderText()
+    {
+        string text = "";
+
+        foreach (IngredientType ingredient in order)
+        {
+            text += ingredient + "\n";
+        }
+
+        return text;
     }
 }
