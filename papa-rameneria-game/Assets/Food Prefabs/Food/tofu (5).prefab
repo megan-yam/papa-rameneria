@@ -81,6 +81,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 651c4869b25a18941afb572f23e89637, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5840848210892281853}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 651c4869b25a18941afb572f23e89637, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7533188501104396110}
   m_SourcePrefab: {fileID: 100100000, guid: 651c4869b25a18941afb572f23e89637, type: 3}
 --- !u!1 &7838779651098790064 stripped
 GameObject:
@@ -149,3 +152,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DragObjects
   dropZoneTag: tofuDropZone
   snapDistance: 0.25
+--- !u!114 &-7533188501104396110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7838779651098790064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c13af15c17445caa41586d230bc8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ingredient
+  ingredientType: 8

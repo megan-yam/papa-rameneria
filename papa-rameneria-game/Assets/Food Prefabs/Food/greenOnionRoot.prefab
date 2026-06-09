@@ -2981,6 +2981,7 @@ GameObject:
   - component: {fileID: 3526296840441999384}
   - component: {fileID: 7071574193341498850}
   - component: {fileID: 6571524277437490573}
+  - component: {fileID: 2510015625275500577}
   m_Layer: 0
   m_Name: greenOnionRoot
   m_TagString: Untagged
@@ -3066,6 +3067,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DragObjects
   dropZoneTag: greenOnionDropZone
   snapDistance: 0.25
+--- !u!114 &2510015625275500577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8457594017983198968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c13af15c17445caa41586d230bc8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ingredient
+  ingredientType: 10
 --- !u!1 &8483365670033486816
 GameObject:
   m_ObjectHideFlags: 0
