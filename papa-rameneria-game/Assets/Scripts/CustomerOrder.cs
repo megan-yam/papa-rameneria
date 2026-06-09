@@ -12,6 +12,7 @@ public class CustomerOrder : MonoBehaviour
 
     void GenerateOrder()
     {
+        // EDIT THIS SHIT TO NOT BE RANDOMLY GENERATED AAAA
         order = new HashSet<IngredientType>();
         IngredientType[] noodles =
         {
