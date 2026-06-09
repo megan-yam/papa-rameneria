@@ -9,7 +9,7 @@ public class Customer : MonoBehaviour
     public float speed = 2f;
     private Vector3 target;
     private bool isMoving = false;
-    HashSet<IngredientType> order;
+    private CustomerOrder order;
     // Noodles: thick, thin, normal
     // Soup: Tonkatsu, Miso, Shoyu
     // Protein: eggs, pork, tofu
@@ -20,6 +20,7 @@ public class Customer : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
+        order = GetComponent<CustomerOrder>();
     }
 
     void Update()
@@ -56,12 +57,12 @@ public class Customer : MonoBehaviour
         float correct = 0;
         foreach (IngredientType ingredient in actualIngredients)
         {
-            if (order.Contains(ingredient))
+            if (order.order.Contains(ingredient))
             {
                 correct += 1;
             }
         }
-        return (float)correct / order.Count * 100f;
+        return (float)correct / order.order.Count * 100f;
     }
 
     public float CalculateTimeliness()
