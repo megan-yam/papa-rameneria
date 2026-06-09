@@ -3,7 +3,7 @@ public enum IngredientType
     ThickNoodles,
     ThinNoodles,
     NormalNoodles,
-    Tonkatsu,
+    Tonkotsu,
     Miso,
     Shoyu,
 
