@@ -14,17 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEditor.dll::UnityEditor.GridSettings
   m_ActiveModeIndex: 0
   m_GridModes:
+<<<<<<< Updated upstream
   - rid: 2176832016678912003
   - rid: 2176832016678912004
+=======
+  - rid: 2176831901538975747
+  - rid: 2176831901538975748
+>>>>>>> Stashed changes
   m_GridSize: {x: 1, y: 1, z: 1}
   m_GridMultiplier: 0
   references:
     version: 2
     RefIds:
+<<<<<<< Updated upstream
     - rid: 2176832016678912003
       type: {class: WorldGridMode, ns: UnityEditor, asm: UnityEditor.CoreModule}
       data: 
     - rid: 2176832016678912004
+=======
+    - rid: 2176831901538975747
+      type: {class: WorldGridMode, ns: UnityEditor, asm: UnityEditor.CoreModule}
+      data: 
+    - rid: 2176831901538975748
+>>>>>>> Stashed changes
       type: {class: CustomGridMode, ns: UnityEditor, asm: UnityEditor.CoreModule}
       data:
         m_Position: {x: 0, y: 0, z: 0}

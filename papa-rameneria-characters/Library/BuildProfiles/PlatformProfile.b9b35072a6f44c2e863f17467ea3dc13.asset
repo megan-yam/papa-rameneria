@@ -17,7 +17,11 @@ MonoBehaviour:
   m_Subtarget: 0
   m_PlatformId: b9b35072a6f44c2e863f17467ea3dc13
   m_PlatformBuildProfile:
+<<<<<<< Updated upstream
     rid: 2176832016678912001
+=======
+    rid: 2176831901538975745
+>>>>>>> Stashed changes
   m_OverrideGlobalSceneList: 0
   m_Scenes: []
   m_HasScriptingDefines: 0
@@ -27,7 +31,11 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+<<<<<<< Updated upstream
     - rid: 2176832016678912001
+=======
+    - rid: 2176831901538975745
+>>>>>>> Stashed changes
       type: {class: AndroidPlatformBuildSettings, ns: UnityEditor.Android, asm: UnityEditor.Android.Extensions}
       data:
         m_Development: 0

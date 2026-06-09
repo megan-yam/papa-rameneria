@@ -62,7 +62,11 @@ ModelImporter:
     - serializedVersion: 16
       name: walk
       takeName: Scene
+<<<<<<< Updated upstream
       internalID: -1609281748187839663
+=======
+      internalID: -8800838248204228948
+>>>>>>> Stashed changes
       firstFrame: 30
       lastFrame: 60
       wrapMode: 0
@@ -91,7 +95,11 @@ ModelImporter:
     - serializedVersion: 16
       name: talk
       takeName: Scene
+<<<<<<< Updated upstream
       internalID: 723096430288179899
+=======
+      internalID: -491678979986718739
+>>>>>>> Stashed changes
       firstFrame: 61
       lastFrame: 90
       wrapMode: 0
@@ -120,7 +128,11 @@ ModelImporter:
     - serializedVersion: 16
       name: happy
       takeName: Scene
+<<<<<<< Updated upstream
       internalID: 1963079803359675471
+=======
+      internalID: -7861037764357068360
+>>>>>>> Stashed changes
       firstFrame: 91
       lastFrame: 140
       wrapMode: 0
@@ -149,7 +161,11 @@ ModelImporter:
     - serializedVersion: 16
       name: mad
       takeName: Scene
+<<<<<<< Updated upstream
       internalID: -626948583029366203
+=======
+      internalID: -3692877260685233286
+>>>>>>> Stashed changes
       firstFrame: 141
       lastFrame: 180
       wrapMode: 0
