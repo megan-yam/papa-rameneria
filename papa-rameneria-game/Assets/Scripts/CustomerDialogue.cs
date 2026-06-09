@@ -13,5 +13,6 @@ public class CustomerDialogue : MonoBehaviour
     void OnMouseDown()
     {
         speechBubble.SetActive(true);
+        customer.Animator.SetBool("talking", true);
     }
 }
