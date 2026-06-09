@@ -11,7 +11,6 @@ public class DragObjects : MonoBehaviour
     private Vector3 originalPosition;
     private bool isDragging = false;
     private Vector3 mouseOffset;
-    // private float lockedZPosition;
     private Quaternion originalRotation;
 
     void Start()
@@ -19,7 +18,7 @@ public class DragObjects : MonoBehaviour
          // Save the start position in case the drop fails
         originalPosition = transform.position;
         originalRotation = transform.rotation;
-        // lockedZPosition = transform.position.z;
+        Debug.Log(originalPosition);
     }
 
     void Update()
@@ -36,18 +35,7 @@ public class DragObjects : MonoBehaviour
         return;
         
         // Calculate the difference between object position and mouse world position
-        transform.SetParent(null);
-        mouseOffset = transform.position - GetMouseWorldPos();
-        isDragging = true;
-
-        Rigidbody rb = GetComponent<Rigidbody>();
-        if(rb != null)
-        {
-            rb.isKinematic = true;
-            rb.useGravity = false;
-            // rb.linearVelocity = Vector3.zero;
-            // rb.angularVelocity = Vector3.zero;
-        }
+        StartDragging();
         
     }
 
@@ -57,6 +45,7 @@ public class DragObjects : MonoBehaviour
         // curPosition.z = lockedZPosition; 
         if (isDragging)
         {
+            Debug.Log(transform.position);
             // Move the object to the mouse position, keeping the z-offset
             transform.position = curPosition;
             transform.rotation = originalRotation;   //keep rotation the same
@@ -84,30 +73,68 @@ public class DragObjects : MonoBehaviour
                 closestZone = zone.transform;
             }
         }
-                
-        if (closestZone != null && closestDistance <= snapDistance)
-        {
-            transform.position = closestZone.position;
-            transform.rotation = originalRotation;
 
+        bool zoneIsEmpty = false;
+
+        if (closestZone != null)
+        {
+            zoneIsEmpty = closestZone.childCount == 0;
+        }
+                
+        // if (closestZone != null && closestDistance <= snapDistance)
+        // {
+        //     transform.position = closestZone.position;
+        //     transform.rotation = originalRotation;
+
+        //     transform.SetParent(closestZone, true);
+
+        //     if (rb != null)
+        //     {
+        //         rb.isKinematic = true;
+        //         rb.useGravity = false;
+        //     }
+        // }
+        if (closestZone != null && closestDistance <= snapDistance && zoneIsEmpty)
+        {
+            Renderer[] renderers = GetComponentsInChildren<Renderer>();
+
+            if (renderers.Length > 0)
+            {
+                Bounds bounds = renderers[0].bounds;
+
+                for (int i = 1; i < renderers.Length; i++)
+                {
+                    bounds.Encapsulate(renderers[i].bounds);
+                }
+
+                Vector3 centerOffset = bounds.center - transform.position;
+                transform.position = closestZone.position - centerOffset;
+            }
+            else
+            {
+                transform.position = closestZone.position;
+            }
+
+            transform.rotation = originalRotation;
             transform.SetParent(closestZone, true);
 
+            if (rb != null)
+            {
+                rb.isKinematic = true;
+                rb.useGravity = false;
+            }
         }
         else
         {
-            transform.SetParent(null, true);
+             transform.SetParent(null, true);
 
+            if (rb != null)
+            {
+                rb.isKinematic = false;
+                rb.useGravity = true;
+            }
         }
-        
-        if (rb != null)
-        {
-            rb.isKinematic = false;
-            rb.useGravity = true;
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-        }
-
-    }
+    } 
 
     private Vector3 GetMouseWorldPos()
     {
@@ -115,5 +142,25 @@ public class DragObjects : MonoBehaviour
         Vector3 mousePoint = Input.mousePosition;
         mousePoint.z = Camera.main.WorldToScreenPoint(transform.position).z;
         return Camera.main.ScreenToWorldPoint(mousePoint);
+    }
+
+    public void StartDragging()
+    {
+        transform.SetParent(null);
+
+        mouseOffset = transform.position - GetMouseWorldPos();
+
+        isDragging = true;
+
+        Rigidbody rb = GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+            rb.isKinematic = true;
+            rb.useGravity = false;
+
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
     }
 }

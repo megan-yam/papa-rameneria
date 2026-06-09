@@ -3,12 +3,12 @@ using TMPro;
 
 
 
-public class NoodleCooker : MonoBehaviour
+public class FoodCooker : MonoBehaviour
 {
     public Material rawMat;
-    public Material cookedMat;
-    public Material burntMat;
-    private NoodleState noodleState;
+   public Material cookedMat;
+   public Material burntMat;
+    private FoodState FoodState;
     public float cookedTime = 5f;
     public float burntTime = 10f;
     public TMP_Text timerText;
@@ -37,19 +37,19 @@ public class NoodleCooker : MonoBehaviour
             statusText.text = "Cooking..";
         }
         //raw to cooked
-        if (timer >= cookedTime && noodleState.state == NoodleState.CookState.Raw)
+        if (timer >= cookedTime && FoodState.state == FoodState.CookState.Raw)
         {
 
-            if (noodleState != null)
-                noodleState.SetState(NoodleState.CookState.Cooked);
+            if (FoodState != null)
+                FoodState.SetState(FoodState.CookState.Cooked);
 
             statusText.text = "Cooked!";
         }
         //cooked to burnt
-        if (timer >= burntTime && noodleState.state == NoodleState.CookState.Cooked)
+        if (timer >= burntTime && FoodState.state == FoodState.CookState.Cooked)
         {
-            if (noodleState != null)
-                noodleState.SetState(NoodleState.CookState.Burnt);
+            if (FoodState != null)
+                FoodState.SetState(FoodState.CookState.Burnt);
 
             statusText.text = "Burnt!";
         }
@@ -57,7 +57,7 @@ public class NoodleCooker : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Noodles"))
+        if (other.CompareTag("Food"))
         {
             timer = 0f;
             cooking = true;
@@ -65,7 +65,7 @@ public class NoodleCooker : MonoBehaviour
             timerText.gameObject.SetActive(true);
             statusText.gameObject.SetActive(true);
 
-            noodleState = other.GetComponent<NoodleState>();
+            FoodState = other.GetComponent<FoodState>();
 
             Debug.Log("Cooking started!");
         }
@@ -73,7 +73,7 @@ public class NoodleCooker : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Noodles"))
+        if (other.CompareTag("Food"))
         {
             cooking = false;
 
