@@ -6,18 +6,31 @@ public class Customer : MonoBehaviour
     protected float waitTimer;
     private Animator animator;
     public float speed = 2f;
-    public Vector3 target;
-    private bool isMoving;
+    private Vector3 target;
+    private bool isMoving = false;
+    // private bool hasArrived;
     HashSet<Material> order;
+    // protein: pork, fishcakes, tofu, egg
+    // noodle types: thick and thin
+    // veggies: green onions, bok choy, mushrooms, bean sprouts
     HashSet<Material> actualIngredients;
 
-    void Start()
+
+    void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
+    void Start()
+{
+    Debug.Log(gameObject.name + " | controller: " +
+        animator.runtimeAnimatorController);
+        Debug.Log(gameObject.name + " animator object = " + animator.gameObject.name);
+}
+
     void Update()
     {
+        animator.SetBool("isWalking", isMoving);
         if (isMoving)
         {
             Move();
@@ -31,16 +44,19 @@ public class Customer : MonoBehaviour
 
     void Move()
     {
+        // if (hasArrived) return;
         transform.position = Vector3.MoveTowards(
             transform.position,
             target,
             speed * Time.deltaTime
         );
 
-        if (Vector3.Distance(transform.position, target) < 0.1f)
+        if (Vector3.Distance(transform.position, target) <= 0.01f)
         {
+            transform.position = target;
             isMoving = false;
-            animator.Play("idle");
+            // hasArrived = true;
+            // animator.SetBool("isWalking", isMoving);
         }
     }
 
@@ -84,5 +100,13 @@ public class Customer : MonoBehaviour
         float cooking = CalculateCooking();
 
         return (accuracy + timeliness + cooking) / 3f;
+    }
+
+    public void SetTarget(Vector3 newTarget)
+    {
+        target = newTarget;
+        isMoving = true;
+        // hasArrived = false;
+        // animator.SetBool("isWalking", isMoving);
     }
 }
