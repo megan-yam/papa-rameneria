@@ -34,6 +34,7 @@ public class CustomerSpawner : MonoBehaviour
         Debug.Log("SetTarget called on " + gameObject.name);
         customerObj.transform.localScale = new Vector3(40f, 40f, 40f);
         Customer customer = customerObj.GetComponentInChildren<Customer>();
+        
         if (customer == null)
         {
             Debug.LogError("Customer script not found on prefab!");
@@ -45,7 +46,9 @@ public class CustomerSpawner : MonoBehaviour
             Debug.LogError("QueueSpot not assigned in Inspector!");
             return;
         }
-        customer.SetTarget(queueSpot.position);
-        customerIdx++;
-    }
+                customer.SetTarget(queueSpot.position);
+                customerIdx++;
+            }
+    
+    
 }

@@ -290,7 +290,6 @@ GameObject:
   - component: {fileID: 302181374588154527}
   - component: {fileID: 7309738520178421636}
   - component: {fileID: 1307393908023339241}
-  - component: {fileID: 5733801607022159519}
   m_Layer: 0
   m_Name: ShoyuBowl
   m_TagString: Untagged
@@ -433,18 +432,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ingredient
   ingredientType: 5
---- !u!114 &5733801607022159519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2617311345363739731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fb5a86346fd0491e8b4a0edab0e79c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Bowl
 --- !u!1 &2809295200893399510
 GameObject:
   m_ObjectHideFlags: 0
