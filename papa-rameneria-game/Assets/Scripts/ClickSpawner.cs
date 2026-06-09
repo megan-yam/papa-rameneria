@@ -9,7 +9,7 @@ public class ClickSpawner : MonoBehaviour
     {
         if(prefabToSpawn != null && spawnPoint != null)
         {
-            GameObject spawned = Instantiate(prefabToSpawn, spawnPoint.position, transform.rotation);
+            GameObject spawned = Instantiate(prefabToSpawn, spawnPoint.position, prefabToSpawn.transform.rotation);
             // spawned.transform.localScale = transform.lossyScale;
 
             DragObjects drag = spawned.GetComponent<DragObjects>();
