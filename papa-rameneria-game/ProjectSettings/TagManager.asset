@@ -4,8 +4,14 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - DropZone
-  - DropZone2
+  - Food
+  - meatDropZone
+  - tofuDropZone
+  - greenOnionDropZone
+  - eggDropZone
+  - noodleDropZone
+  - fishcakeDropZone
+  - porkDropZone
   layers:
   - Default
   - TransparentFX
