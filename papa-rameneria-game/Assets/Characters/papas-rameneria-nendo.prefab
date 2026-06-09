@@ -101,6 +101,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4e8fe9bef520a447587280069a56f794, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9072539810395344264}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4e8fe9bef520a447587280069a56f794, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7205092723045858599}
   m_SourcePrefab: {fileID: 100100000, guid: 4e8fe9bef520a447587280069a56f794, type: 3}
 --- !u!1 &7348877218991675444 stripped
 GameObject:
@@ -155,3 +158,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerOrder
   order: 030000000100000009000000080000000a000000
+--- !u!114 &7205092723045858599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7348877218991675444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29eafa7aedc09481291cc9e5378364c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomerDialogue
+  speechBubble: {fileID: 0}
+  interactBubble: {fileID: 0}
+  dialogueText: {fileID: 0}
+  greetingDialogue: 
+  orderDialogue: 
+  dialogueDuration: 10
