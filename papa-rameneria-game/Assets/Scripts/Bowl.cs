@@ -3,36 +3,15 @@ using UnityEngine;
 
 public class Bowl : MonoBehaviour
 {
-    private List<GameObject> ingredients = new();
+    private List<IngredientType> ingredients = new();
 
-    public void AddIngredient(GameObject ingredient)
+    public void AddIngredient(IngredientType ingredient)
     {
         ingredients.Add(ingredient);
     }
 
-    public List<GameObject> getIngredients()
+    public List<IngredientType> GetIngredients()
     {
         return ingredients;
-    }
-
-    public IngredientType GetIngredientType(GameObject obj)
-    {
-        return obj.GetComponent<Ingredient>().ingredientType;
-    }
-
-
-    public FoodState.CookState GetNoodleCookState()
-    {
-        foreach (GameObject ingredient in ingredients)
-        {
-            FoodState foodState = ingredient.GetComponent<FoodState>();
-
-            if (foodState != null)
-            {
-                return foodState.state;
-            }
-        }
-
-        return FoodState.CookState.Raw; // fallback
     }
 }

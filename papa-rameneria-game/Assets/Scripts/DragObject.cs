@@ -123,7 +123,7 @@ public class DragObjects : MonoBehaviour
 
             if (bowl != null && ingredient != null)
             {
-                bowl.AddIngredient(ingredient.gameObject);
+                bowl.AddIngredient(ingredient.ingredientType);
             }
 
             if (rb != null)

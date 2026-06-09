@@ -9,19 +9,17 @@ public class Customer : MonoBehaviour
     public float speed = 2f;
     private Vector3 target;
     private bool isMoving = false;
-    private CustomerOrder order;
+    HashSet<IngredientType> order;
     // Noodles: thick, thin, normal
     // Soup: Tonkotsu, Miso, Shoyu
     // Protein: eggs, pork, tofu
     // Veggies: green onion, fishcake
-    // HashSet<IngredientType> actualIngredients;
-    private Bowl actualIngredients;
+    HashSet<IngredientType> actualIngredients;
 
 
     void Awake()
     {
         animator = GetComponent<Animator>();
-        order = GetComponent<CustomerOrder>();
     }
 
     void Update()
@@ -56,15 +54,14 @@ public class Customer : MonoBehaviour
     public float CalculateAccuracy()
     {
         float correct = 0;
-        foreach (GameObject ingredient in actualIngredients.getIngredients())
+        foreach (IngredientType ingredient in actualIngredients)
         {
-            IngredientType type = actualIngredients.GetIngredientType(ingredient);
-            if (order.order.Contains(type))
+            if (order.Contains(ingredient))
             {
                 correct += 1;
             }
         }
-        return (float)correct / order.order.Count * 100f;
+        return (float)correct / order.Count * 100f;
     }
 
     public float CalculateTimeliness()
@@ -82,18 +79,9 @@ public class Customer : MonoBehaviour
 
     public float CalculateCooking()
     {
-        FoodState.CookState status = actualIngredients.GetNoodleCookState();
-        switch (status)
-        {
-            case FoodState.CookState.Raw:
-                return 0;
-            case FoodState.CookState.Cooked:
-                return 100;
-            case FoodState.CookState.Burnt:
-                return 50;
-            default:
-                return 0;
-        }
+        // TODO: Check if material is cooked
+        float score = 100;
+        return score;
     }
 
     public float CalculateTotalRating()
