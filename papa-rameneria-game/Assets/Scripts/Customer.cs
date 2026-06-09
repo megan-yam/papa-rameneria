@@ -5,6 +5,7 @@ public class Customer : MonoBehaviour
 {
     protected float waitTimer;
     private Animator animator;
+    public Animator Animator => animator;
     public float speed = 2f;
     private Vector3 target;
     private bool isMoving = false;
