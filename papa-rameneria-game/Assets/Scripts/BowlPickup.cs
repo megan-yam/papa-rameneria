@@ -5,10 +5,10 @@ public class BowlPickup : MonoBehaviour
 {
     public Transform holdPoint;
 
-    public Transform northDrop;
-    public Transform eastDrop;
-    public Transform southDrop;
-    public Transform westDrop;
+    public Transform orderStationDrop;
+    public Transform soupStationDrop;
+    public Transform ramenStationDrop;
+    public Transform toppingStationDrop;
     private Quaternion originalRotation;
 
     public PlayerViewController player;
@@ -51,6 +51,7 @@ public class BowlPickup : MonoBehaviour
 
     void PutDown()
     {
+        Debug.Log("Current View: " + player.currentView);
         isHeld = false;
 
         Transform targetDrop = GetDropZone();
@@ -71,19 +72,19 @@ public class BowlPickup : MonoBehaviour
     {
         switch (player.currentView)
         {
-            case PlayerViewController.ViewDirection.North:
-                return northDrop;
+            case PlayerViewController.Station.OrderStation:
+                return orderStationDrop;
 
-            case PlayerViewController.ViewDirection.East:
-                return eastDrop;
+            case PlayerViewController.Station.SoupStation:
+                return soupStationDrop;
 
-            case PlayerViewController.ViewDirection.South:
-                return southDrop;
+            case PlayerViewController.Station.RamenStation:
+                return ramenStationDrop;
 
-            case PlayerViewController.ViewDirection.West:
-                return westDrop;
+            case PlayerViewController.Station.ToppingStation:
+                return toppingStationDrop;
         }
 
-        return northDrop;
+        return orderStationDrop;
     }
 }

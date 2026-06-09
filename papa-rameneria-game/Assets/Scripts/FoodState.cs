@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NoodleState : MonoBehaviour
+public class FoodState : MonoBehaviour
 {
     public enum CookState
     {
@@ -15,11 +15,15 @@ public class NoodleState : MonoBehaviour
     public Material cookedMat;
     public Material burntMat;
 
-    private Renderer noodleRenderer;
+    private Renderer[] renderers;
+
+    void Awake()
+    {
+        renderers = GetComponentsInChildren<Renderer>();
+    }
 
     void Start()
     {
-        noodleRenderer = GetComponentInChildren<Renderer>();
         UpdateAppearance();
     }
 
@@ -31,21 +35,30 @@ public class NoodleState : MonoBehaviour
 
     void UpdateAppearance()
     {
-        if (noodleRenderer == null)
+        if (renderers == null)
             return;
 
         switch (state)
         {
             case CookState.Raw:
-                noodleRenderer.material = rawMat;
+                foreach (Renderer r in renderers)
+                {
+                    r.material = rawMat;
+                }
                 break;
 
             case CookState.Cooked:
-                noodleRenderer.material = cookedMat;
+                foreach (Renderer r in renderers)
+                {
+                    r.material = cookedMat;
+                }
                 break;
 
             case CookState.Burnt:
-                noodleRenderer.material = burntMat;
+                foreach (Renderer r in renderers)
+                {
+                    r.material = burntMat;
+                }
                 break;
         }
     }
