@@ -23,7 +23,7 @@ public class CustomerOrder : MonoBehaviour
 
         IngredientType[] soups =
         {
-            IngredientType.Tonkatsu,
+            IngredientType.Tonkotsu,
             IngredientType.Miso,
             IngredientType.Shoyu
         };

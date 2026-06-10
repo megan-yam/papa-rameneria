@@ -115,7 +115,7 @@ public class Customer : MonoBehaviour
     {
         string text = "";
 
-        foreach (IngredientType ingredient in order)
+        foreach (IngredientType ingredient in order.order)
         {
             text += ingredient + "\n";
         }
