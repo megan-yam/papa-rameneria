@@ -170,10 +170,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29eafa7aedc09481291cc9e5378364c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerDialogue
-  speechBubble: {fileID: 0}
-  interactBubble: {fileID: 0}
-  dialogueText: {fileID: 0}
-  greetingDialogue: "Hi, I'm really hungry.\t"
-  orderDialogue: Could I get shoyu broth with thick noodles, pork, and fish cakes?
-    For toppings, I want green onion and an egg.
-  dialogueDuration: 10
+  orderLines: []

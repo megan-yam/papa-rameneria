@@ -12,6 +12,8 @@ public class CustomerSpawner : MonoBehaviour
     // TRACKER: Tracks how many total customers have entered the scene
     private int totalSpawnedCount = 0;
 
+    public bool IsLastCustomer => totalSpawnedCount >= customerPrefabs.Length;
+
     void Start()
     {
         // Spawn the very first customer immediately when the level begins
@@ -29,6 +31,12 @@ public class CustomerSpawner : MonoBehaviour
  
     void SpawnNextCustomer()
     {
+        if (totalSpawnedCount >= customerPrefabs.Length)
+        {
+            Debug.Log("<color=green><b>ALL CUSTOMERS SERVED! LEVEL COMPLETE!</b></color>");
+            //UIManager.Instance?.ShowGameOver(); // <-- add this line
+            return;
+        }
         // 1. FINITE CHECK: If we have already spawned all 5 customers, stop here!
         if (totalSpawnedCount >= customerPrefabs.Length)
         {

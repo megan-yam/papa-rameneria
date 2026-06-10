@@ -87,32 +87,38 @@ public class ServeButtonController : MonoBehaviour
 {
     Customer waitingCustomer = FindWaitingCustomer();
     Bowl bowl = FindBowlAtOrderStation();
- 
+
     if (waitingCustomer == null || bowl == null)
         return;
- 
+
     waitingCustomer.SetBowl(bowl);
- 
-    // ... (Keep all your scoring and UIManager panel logic here) ...
- 
-    // Vaporize the assets instantly 
+
+    float accuracy   = waitingCustomer.CalculateAccuracy();
+    float timeliness = waitingCustomer.CalculateTimeliness();
+    float cooking    = waitingCustomer.CalculateCooking();
+    float totalScore = waitingCustomer.CalculateTotalRating();
+
+    string resultText = $"Recipe Accuracy:  <color=black>{accuracy:F0}%</color>\n" +
+                        $"Timeliness Bonus: <color=black>{timeliness:F0}%</color>\n" +
+                        $"Cooking Precision: <color=black>{cooking:F0}%</color>\n" +
+                        $"<size=1.4em><b>FINAL RATING: <color=green>{totalScore:F0}%</color></b></size>";
+
+    CustomerSpawner spawner = FindObjectOfType<CustomerSpawner>();
+    bool isLastCustomer = spawner != null && spawner.IsLastCustomer;
+
+    UIManager.Instance?.ShowScoreCard(resultText, isLastCustomer);
+    UIManager.Instance?.HideOrderTicket();
+
     Destroy(bowl.gameObject);
     Destroy(waitingCustomer.gameObject);
- 
-    // NEW: Find the spawner in the scene and tell it the counter is clear!
-    CustomerSpawner spawner = FindObjectOfType<CustomerSpawner>();
-    if (spawner != null)
-    {
+
+    if (spawner != null && !isLastCustomer)
         spawner.NotifyCustomerServed();
-    }
-    else
-    {
-        Debug.LogError("Could not find CustomerSpawner in the scene to trigger the next spawn!");
-    }
- 
+
     player.FaceOrderStation();
     UpdateButtonVisibility();
 }
+
     private Customer FindWaitingCustomer()
     {
         foreach (Customer c in FindObjectsOfType<Customer>())

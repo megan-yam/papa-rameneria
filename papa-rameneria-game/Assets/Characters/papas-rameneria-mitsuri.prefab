@@ -170,10 +170,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29eafa7aedc09481291cc9e5378364c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerDialogue
-  speechBubble: {fileID: 0}
-  interactBubble: {fileID: 0}
-  dialogueText: {fileID: 0}
-  greetingDialogue: Hello, I want a light bowl today.
-  orderDialogue: I'll have a shoyu broth with thick noodles. For protein, I want
-    tofu and fish cakes. Thank you.
-  dialogueDuration: 10
+  orderLines: []

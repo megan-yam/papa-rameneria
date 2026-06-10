@@ -1,25 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class CustomerDialogue : MonoBehaviour
 {
-    public List<string> orderLines;
+    // Keeping this variable so Unity doesn't throw editor compilation errors, 
+    // but we will no longer use it for text printing.
+    [HideInInspector] public System.Collections.Generic.List<string> orderLines;
 
     public void StartDialogue()
     {
-        StartCoroutine(Run());
-    }
-
-    IEnumerator Run()
-    {
-        foreach (string line in orderLines)
+        // 1. Immediately look for the structural order recipe on this customer
+        CustomerOrder customerOrder = GetComponent<CustomerOrder>();
+        
+        if (customerOrder != null)
         {
-            UIManager.Instance.ShowDialogue(line);
-            yield return new WaitForSeconds(2f);
+            // 2. Instantly post the data straight to the screen overlay ticket
+            UIManager.Instance?.DisplayOrderTicket(customerOrder.order);
         }
-
-        UIManager.Instance.HideDialogue();
+        else
+        {
+            Debug.LogError($"CustomerDialogue on {gameObject.name} could not find its CustomerOrder sibling component!");
+        }
     }
 }
