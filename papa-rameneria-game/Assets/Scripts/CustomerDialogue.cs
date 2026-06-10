@@ -66,4 +66,44 @@ public class CustomerDialogue : MonoBehaviour
 
         UIManager.Instance.HideDialogue();
     }
+
+    public void AdvanceDialogue()
+    {
+        dialogueStage++;
+
+        if (dialogueStage == 1)
+        {
+            dialogueText.text = orderDialogue;
+
+            // Automatically close after 10 seconds
+            Invoke(nameof(EndDialogue), dialogueDuration);
+        }
+    }
+
+    public void EndDialogue()
+    {
+        speechBubble.SetActive(false);
+        interactBubble.SetActive(true);
+
+        customer.Animator.SetBool("talking", false);
+
+        dialogueStage = 0;
+    }
+
+    void OnMouseDown()
+    {
+        if (!speechBubble.activeSelf)
+        {
+            StartDialogue();
+        }
+        else if (dialogueStage == 0)
+        {
+            AdvanceDialogue();
+        }
+    }
+
+    public void EnableInteraction()
+    {
+        interactBubble.SetActive(true);
+    }
 }

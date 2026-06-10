@@ -16,12 +16,14 @@ public class Customer : MonoBehaviour
     // Veggies: green onion, fishcake
     // HashSet<IngredientType> actualIngredients;
     private Bowl actualIngredients;
+    private CustomerDialogue dialogue;
 
 
     void Awake()
     {
         animator = GetComponent<Animator>();
         order = GetComponent<CustomerOrder>();
+        dialogue = GetComponent<CustomerDialogue>();
     }
 
     void Update()
@@ -50,6 +52,10 @@ public class Customer : MonoBehaviour
         {
             transform.position = target;
             isMoving = false;
+            if (dialogue != null)
+            {
+                dialogue.EnableInteraction();
+            }
         }
     }
 

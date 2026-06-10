@@ -98,6 +98,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f7ad95f56ca474ca2850c65648ea8a26, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7911253724617607677}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f7ad95f56ca474ca2850c65648ea8a26, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1122479827371992961}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f7ad95f56ca474ca2850c65648ea8a26, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8262038532346231}
   m_SourcePrefab: {fileID: 100100000, guid: f7ad95f56ca474ca2850c65648ea8a26, type: 3}
 --- !u!1 &3962471641470876244 stripped
 GameObject:
@@ -139,3 +145,35 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-1122479827371992961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962471641470876244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4140d7cc75bf45d795cb926fa03425b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomerOrder
+  order: 05000000000000000600000009000000080000000a000000
+--- !u!114 &-8262038532346231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962471641470876244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29eafa7aedc09481291cc9e5378364c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomerDialogue
+  speechBubble: {fileID: 0}
+  interactBubble: {fileID: 0}
+  dialogueText: {fileID: 0}
+  greetingDialogue: I'm in a rush, so please get my order done ASAP.
+  orderDialogue: I want shoyu broth. Not spicy. Not miso. Use thick noodles and don't
+    overcook them. Add prok, egg, tofu, and green onion.
+  dialogueDuration: 10
