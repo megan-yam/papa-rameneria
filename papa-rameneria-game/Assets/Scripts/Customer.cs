@@ -54,7 +54,7 @@ public class Customer : MonoBehaviour
             isMoving = false;
             if (dialogue != null)
             {
-                dialogue.EnableInteraction();
+                dialogue.StartDialogue();
             }
         }
     }
