@@ -173,6 +173,7 @@ MonoBehaviour:
   speechBubble: {fileID: 0}
   interactBubble: {fileID: 0}
   dialogueText: {fileID: 0}
-  greetingDialogue: 
-  orderDialogue: 
+  greetingDialogue: Hello, I want a light bowl today.
+  orderDialogue: I'll have a shoyu broth with thick noodles. For protein, I want
+    tofu and fish cakes. Thank you.
   dialogueDuration: 10

@@ -24,7 +24,7 @@ public class CustomerDialogue : MonoBehaviour
         customer = GetComponent<Customer>();
 
         speechBubble.SetActive(false);
-        interactBubble.SetActive(true);
+        interactBubble.SetActive(false);
     }
 
     public void StartDialogue()
@@ -73,5 +73,10 @@ public class CustomerDialogue : MonoBehaviour
         {
             AdvanceDialogue();
         }
+    }
+
+    public void EnableInteraction()
+    {
+        interactBubble.SetActive(true);
     }
 }

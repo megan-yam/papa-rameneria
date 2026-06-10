@@ -173,6 +173,7 @@ MonoBehaviour:
   speechBubble: {fileID: 0}
   interactBubble: {fileID: 0}
   dialogueText: {fileID: 0}
-  greetingDialogue: 
-  orderDialogue: 
+  greetingDialogue: I'm in a rush, so please get my order done ASAP.
+  orderDialogue: I want shoyu broth. Not spicy. Not miso. Use thick noodles and don't
+    overcook them. Add prok, egg, tofu, and green onion.
   dialogueDuration: 10

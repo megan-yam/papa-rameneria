@@ -173,6 +173,7 @@ MonoBehaviour:
   speechBubble: {fileID: 0}
   interactBubble: {fileID: 0}
   dialogueText: {fileID: 0}
-  greetingDialogue: 
-  orderDialogue: 
+  greetingDialogue: Hello!
+  orderDialogue: I would like a tonkatsu broth with thin noodles, tofu, green onion,
+    and an egg.
   dialogueDuration: 10

@@ -173,6 +173,7 @@ MonoBehaviour:
   speechBubble: {fileID: 0}
   interactBubble: {fileID: 0}
   dialogueText: {fileID: 0}
-  greetingDialogue: 
-  orderDialogue: 
+  greetingDialogue: "Hi, I'm really hungry.\t"
+  orderDialogue: Could I get shoyu broth with thick noodles, pork, and fish cakes?
+    For toppings, I want green onion and an egg.
   dialogueDuration: 10
