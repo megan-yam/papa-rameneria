@@ -1,51 +1,76 @@
 using UnityEngine;
-
+ 
 public class CustomerSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] customerPrefabs;
     [SerializeField] private Transform queueSpot;
     public Transform spawnPoint;
-    public float spawnInterval = 180f;
-    private float timer;
+    
     private int customerIdx = 0;
+    private bool isCounterOccupied = false;
 
-    void Update()
+    // TRACKER: Tracks how many total customers have entered the scene
+    private int totalSpawnedCount = 0;
+
+    void Start()
     {
-        timer += Time.deltaTime;
-
-        if (timer >= spawnInterval)
-        {
-            SpawnCustomer();
-            timer = 0f;
-        }
+        // Spawn the very first customer immediately when the level begins
+        SpawnNextCustomer();
     }
 
-    void SpawnCustomer()
+    // Public method that your serve button calls
+    public void NotifyCustomerServed()
     {
-        if (customerIdx >= customerPrefabs.Length)
+        isCounterOccupied = false;
+        
+        // Spawn the next person in line
+        SpawnNextCustomer();
+    }
+ 
+    void SpawnNextCustomer()
+    {
+        // 1. FINITE CHECK: If we have already spawned all 5 customers, stop here!
+        if (totalSpawnedCount >= customerPrefabs.Length)
         {
-            return;
-        }
-        GameObject customerObj =
-            Instantiate(customerPrefabs[customerIdx],
-                        spawnPoint.position,
-                        Quaternion.Euler(-90f, 180f, 90f),
-                        transform);
-        Debug.Log("SetTarget called on " + gameObject.name);
-        customerObj.transform.localScale = new Vector3(40f, 40f, 40f);
-        Customer customer = customerObj.GetComponentInChildren<Customer>();
-        if (customer == null)
-        {
-            Debug.LogError("Customer script not found on prefab!");
+            Debug.Log("<color=green><b>ALL CUSTOMERS SERVED! LEVEL COMPLETE!</b></color>");
             return;
         }
 
-        if (queueSpot == null)
+        // Safety lock: Don't spawn if someone is still currently at the counter
+        if (isCounterOccupied) return;
+
+        if (customerPrefabs == null || customerPrefabs.Length == 0)
         {
-            Debug.LogError("QueueSpot not assigned in Inspector!");
+            Debug.LogError("No customer prefabs assigned to CustomerSpawner!");
             return;
         }
+ 
+        // Create the physical customer structure
+        GameObject customerObj = Instantiate(
+            customerPrefabs[customerIdx],
+            spawnPoint.position,
+            Quaternion.Euler(-90f, 180f, 90f),
+            transform
+        );
+ 
+        customerObj.transform.localScale = new Vector3(40f, 40f, 40f);
+        Customer customer = customerObj.GetComponentInChildren<Customer>();
+ 
+        if (customer == null)
+        {
+            Debug.LogError($"Customer script missing on prefab '{customerPrefabs[customerIdx].name}'!");
+            Destroy(customerObj);
+            return;
+        }
+ 
+        Debug.Log($"Spawning customer {totalSpawnedCount + 1}/{customerPrefabs.Length}: {customerObj.name}");
         customer.SetTarget(queueSpot.position);
-        customerIdx++;
+        
+        // Mark the station as busy
+        isCounterOccupied = true;
+
+        // Increment our trackers
+        totalSpawnedCount++;
+        customerIdx++; // Moves to the next index linearly (0 -> 1 -> 2 -> 3 -> 4)
     }
 }

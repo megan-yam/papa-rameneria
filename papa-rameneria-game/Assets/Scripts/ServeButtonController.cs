@@ -1,157 +1,142 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+ 
 public class ServeButtonController : MonoBehaviour
 {
     private PlayerViewController player;
     private Button serveButton;
-
+ 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void Bootstrap()
     {
         if (FindObjectOfType<ServeButtonController>() != null)
             return;
-
+ 
         PlayerViewController playerView = FindObjectOfType<PlayerViewController>();
         if (playerView == null)
             return;
-
+ 
         GameObject controllerObject = new GameObject("Serve Button Controller");
         ServeButtonController controller = controllerObject.AddComponent<ServeButtonController>();
         controller.player = playerView;
     }
-
+ 
     private void Start()
     {
         if (player == null)
             player = FindObjectOfType<PlayerViewController>();
-
+ 
         CreateButton();
         UpdateButtonVisibility();
     }
-
+ 
     private void Update()
     {
         UpdateButtonVisibility();
     }
-
+ 
     private void CreateButton()
     {
         if (serveButton != null)
             return;
-
+ 
         Canvas canvas = FindObjectOfType<Canvas>();
         if (canvas == null)
             return;
-
+ 
         Button stationButton = FindStationButtonTemplate();
         GameObject buttonObject = new GameObject("Serve Button", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(Button));
         buttonObject.transform.SetParent(canvas.transform, false);
-
-        RectTransform rect = buttonObject.GetComponent<RectTransform>();
-        rect.anchorMin = new Vector2(1f, 1f);
-        rect.anchorMax = new Vector2(1f, 1f);
-        rect.pivot = new Vector2(1f, 0.5f);
-        rect.anchoredPosition = new Vector2(-20f, -125f);
-        rect.sizeDelta = new Vector2(125f, 30f);
-
-        Image image = buttonObject.GetComponent<Image>();
-        ApplyImageStyle(image, stationButton);
-
-        Outline outline = buttonObject.AddComponent<Outline>();
-        outline.effectColor = new Color(0.74f, 0.55f, 0.32f, 1f);
-        outline.effectDistance = new Vector2(2f, -2f);
-
+ 
+        RectTransform rt = buttonObject.GetComponent<RectTransform>();
+        rt.sizeDelta = new Vector2(160, 50);
+        rt.anchoredPosition = new Vector2(0, -200);
+ 
+        Image img = buttonObject.GetComponent<Image>();
+        img.color = Color.green;
+ 
         serveButton = buttonObject.GetComponent<Button>();
-        ApplyButtonStyle(serveButton, stationButton);
-        serveButton.onClick.AddListener(Serve);
-
-        GameObject textObject = new GameObject("Text (TMP)", typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI));
+        serveButton.onClick.AddListener(OnServePressed);
+ 
+        GameObject textObject = new GameObject("Text", typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI));
         textObject.transform.SetParent(buttonObject.transform, false);
-
-        RectTransform textRect = textObject.GetComponent<RectTransform>();
-        textRect.anchorMin = Vector2.zero;
-        textRect.anchorMax = Vector2.one;
-        textRect.offsetMin = Vector2.zero;
-        textRect.offsetMax = Vector2.zero;
-
-        TextMeshProUGUI label = textObject.GetComponent<TextMeshProUGUI>();
-        label.text = "serve";
-        label.alignment = TextAlignmentOptions.Center;
-        label.fontSize = 14f;
-        label.color = Color.black;
-        label.raycastTarget = false;
-        ApplyTextStyle(label, stationButton);
+ 
+        TextMeshProUGUI buttonText = textObject.GetComponent<TextMeshProUGUI>();
+        buttonText.text = "SERVE";
+        buttonText.fontSize = 24;
+        buttonText.color = Color.white;
+        buttonText.alignment = TextAlignmentOptions.Center;
+ 
+        RectTransform textRt = textObject.GetComponent<RectTransform>();
+        textRt.anchoredPosition = Vector3.zero;
+        textRt.sizeDelta = rt.sizeDelta;
     }
-
+ 
     private Button FindStationButtonTemplate()
     {
-        GameObject stationButtonObject = GameObject.Find("topping station");
-        return stationButtonObject != null ? stationButtonObject.GetComponent<Button>() : null;
-    }
-
-    private void ApplyImageStyle(Image image, Button stationButton)
-    {
-        Image stationImage = stationButton != null ? stationButton.GetComponent<Image>() : null;
-
-        if (stationImage != null)
+        foreach (Button b in FindObjectsOfType<Button>(true))
         {
-            image.sprite = stationImage.sprite;
-            image.type = stationImage.type;
-            image.color = stationImage.color;
-            image.material = stationImage.material;
-            image.pixelsPerUnitMultiplier = stationImage.pixelsPerUnitMultiplier;
-            return;
+            if (b.name.Contains("Station") || b.name.Contains("View"))
+                return b;
         }
-
-        image.sprite = Resources.GetBuiltinResource<Sprite>("UI/Skin/UISprite.psd");
-        image.type = Image.Type.Sliced;
-        image.color = Color.white;
+        return null;
     }
-
-    private void ApplyButtonStyle(Button button, Button stationButton)
+ 
+    private void OnServePressed()
+{
+    Customer waitingCustomer = FindWaitingCustomer();
+    Bowl bowl = FindBowlAtOrderStation();
+ 
+    if (waitingCustomer == null || bowl == null)
+        return;
+ 
+    waitingCustomer.SetBowl(bowl);
+ 
+    // ... (Keep all your scoring and UIManager panel logic here) ...
+ 
+    // Vaporize the assets instantly 
+    Destroy(bowl.gameObject);
+    Destroy(waitingCustomer.gameObject);
+ 
+    // NEW: Find the spawner in the scene and tell it the counter is clear!
+    CustomerSpawner spawner = FindObjectOfType<CustomerSpawner>();
+    if (spawner != null)
     {
-        if (stationButton == null)
-            return;
-
-        button.transition = stationButton.transition;
-        button.colors = stationButton.colors;
-        button.spriteState = stationButton.spriteState;
-        button.animationTriggers = stationButton.animationTriggers;
+        spawner.NotifyCustomerServed();
     }
-
-    private void ApplyTextStyle(TextMeshProUGUI label, Button stationButton)
+    else
     {
-        TextMeshProUGUI stationLabel = stationButton != null ? stationButton.GetComponentInChildren<TextMeshProUGUI>() : null;
-        if (stationLabel == null)
-            return;
-
-        label.font = stationLabel.font;
-        label.fontSharedMaterial = stationLabel.fontSharedMaterial;
-        label.fontSize = stationLabel.fontSize;
-        label.fontStyle = stationLabel.fontStyle;
-        label.color = stationLabel.color;
-        label.enableAutoSizing = stationLabel.enableAutoSizing;
-        label.fontSizeMin = stationLabel.fontSizeMin;
-        label.fontSizeMax = stationLabel.fontSizeMax;
+        Debug.LogError("Could not find CustomerSpawner in the scene to trigger the next spawn!");
     }
-
-    private void Serve()
+ 
+    player.FaceOrderStation();
+    UpdateButtonVisibility();
+}
+    private Customer FindWaitingCustomer()
     {
-        if (player == null)
-            return;
-
-        player.FaceOrderStation();
-        UpdateButtonVisibility();
+        foreach (Customer c in FindObjectsOfType<Customer>())
+        {
+            if (!c.HasBowl)
+                return c;
+        }
+        return null;
     }
-
+ 
+    private Bowl FindBowlAtOrderStation()
+    {
+        Bowl[] bowls = FindObjectsOfType<Bowl>();
+        if (bowls.Length > 0)
+            return bowls[0];
+        return null;
+    }
+ 
     private void UpdateButtonVisibility()
     {
         if (serveButton == null || player == null)
             return;
-
-        bool shouldShow = player.currentView == PlayerViewController.Station.ToppingStation;
+ 
+        bool shouldShow = (player.currentView == PlayerViewController.Station.OrderStation) && (FindWaitingCustomer() != null);
         serveButton.gameObject.SetActive(shouldShow);
     }
 }
